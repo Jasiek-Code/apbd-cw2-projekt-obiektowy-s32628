@@ -1,11 +1,16 @@
 ﻿namespace projekt_obiektowy.Domain;
 
-public class Rental(User user, Hardware hardware)
+public class Rental(User user, Hardware hardware, int daysToRent)
 {
-    public required User User { get; init; }
-    public required Hardware Hardware { get; init; }
+    public Guid Id { get; init; } = Guid.NewGuid();
+    
+    public required User User { get; init; } = user;
+    public required Hardware Hardware { get; init; } = hardware;
     
     public DateTime RentDate { get; init; } = DateTime.Now;
-    public DateTime DueDate { get; init; }
-    public DateTime? ReturnDate { get; init; } = null;
+    public DateTime DueDate { get; set; } = DateTime.Now.AddDays(daysToRent);
+    
+    public DateTime? ReturnDate { get; set; }
+
+    public decimal Penalty { get; set; } = 0;
 }
