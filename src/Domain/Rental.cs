@@ -4,8 +4,8 @@ public class Rental(User user, Hardware hardware, int daysToRent)
 {
     public Guid Id { get; init; } = Guid.NewGuid();
     
-    public required User User { get; init; } = user;
-    public required Hardware Hardware { get; init; } = hardware;
+    public User User { get; init; } = user;
+    public Hardware Hardware { get; init; } = hardware;
     
     public DateTime RentDate { get; init; } = DateTime.Now;
     public DateTime DueDate { get; set; } = DateTime.Now.AddDays(daysToRent);
