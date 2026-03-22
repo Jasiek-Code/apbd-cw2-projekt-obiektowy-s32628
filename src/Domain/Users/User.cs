@@ -1,8 +1,8 @@
-﻿namespace projekt_obiektowy.Domain;
+﻿namespace projekt_obiektowy.Domain.Users;
 
 public abstract class User(string name, string surname)
 {
-    public Guid Id { get; init; } = Guid.NewGuid();
+    public Guid Id { get; } = Guid.NewGuid();
     public string Name { get; } = name;
     public string Surname { get; } = surname;
 

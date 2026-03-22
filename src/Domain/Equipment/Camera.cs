@@ -1,4 +1,4 @@
-﻿namespace projekt_obiektowy.Domain;
+﻿namespace projekt_obiektowy.Domain.Equipment;
 
 public class Camera(string name, bool isDigital, int memoryGb) : Hardware(name)
 {

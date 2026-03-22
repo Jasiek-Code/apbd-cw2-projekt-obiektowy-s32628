@@ -1,4 +1,4 @@
-﻿namespace projekt_obiektowy.Domain;
+﻿namespace projekt_obiektowy.Domain.Users;
 
 public class Employee(string name, string surname) : User(name, surname)
 {

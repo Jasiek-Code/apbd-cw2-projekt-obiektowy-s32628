@@ -1,4 +1,6 @@
 ﻿using projekt_obiektowy.Domain;
+using projekt_obiektowy.Domain.Equipment;
+using projekt_obiektowy.Domain.Users;
 
 namespace projekt_obiektowy.Services;
 

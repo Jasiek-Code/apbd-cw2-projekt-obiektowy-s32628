@@ -1,4 +1,4 @@
-﻿namespace projekt_obiektowy.Domain;
+﻿namespace projekt_obiektowy.Domain.Equipment;
 
 public class Projector(string name, int brightness, string resolution) : Hardware(name)
 {

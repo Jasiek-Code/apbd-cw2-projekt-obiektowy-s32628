@@ -1,4 +1,4 @@
-﻿namespace projekt_obiektowy.Domain;
+﻿namespace projekt_obiektowy.Domain.Equipment;
 
 public class Laptop(string name, string processor, int ramGb) : Hardware(name)
 {

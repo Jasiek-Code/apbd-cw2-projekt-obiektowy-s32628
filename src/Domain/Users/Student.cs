@@ -1,4 +1,4 @@
-﻿namespace projekt_obiektowy.Domain;
+﻿namespace projekt_obiektowy.Domain.Users;
 
 public class Student(string name, string surname) : User(name, surname)
 {

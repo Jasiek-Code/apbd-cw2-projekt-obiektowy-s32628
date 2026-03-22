@@ -1,4 +1,7 @@
-﻿namespace projekt_obiektowy.Domain;
+﻿using projekt_obiektowy.Domain.Equipment;
+using projekt_obiektowy.Domain.Users;
+
+namespace projekt_obiektowy.Domain;
 
 public class Rental(User user, Hardware hardware, int rentedForDays)
 {

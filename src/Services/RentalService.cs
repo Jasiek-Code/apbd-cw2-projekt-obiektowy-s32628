@@ -1,15 +1,20 @@
 ﻿using projekt_obiektowy.Domain;
+using projekt_obiektowy.Domain.Equipment;
+using projekt_obiektowy.Domain.Users;
 
 namespace projekt_obiektowy.Services;
 
 public class RentalService : IRentalService
 {
-    private readonly List<Rental> _rentals = [];
+    private readonly List<Rental> _activeRentals = [];
+    
+    public IReadOnlyList<Rental> Rentals => _activeRentals.AsReadOnly();
 
     public void Rent(User user, Hardware hardware, int daysToRent)
     {
-        var activeRentalsForUser = _rentals
-            .Count(rental => rental.User.Equals(user) && rental.ReturnDate == null);
+        var activeRentalsForUser = _activeRentals.Count(
+            rental => rental.User.Equals(user) 
+                      && rental.ReturnDate == null);
 
         if (activeRentalsForUser >= user.MaxRentals)
         {
@@ -22,13 +27,14 @@ public class RentalService : IRentalService
         }
         
         hardware.IsAvailable = false;
-        _rentals.Add(new Rental(user, hardware, daysToRent));
+        _activeRentals.Add(new Rental(user, hardware, daysToRent));
     }
 
     public void Return(Hardware hardware)
     {
-        var userRental = _rentals.FirstOrDefault(rental => 
-            rental.Hardware.Equals(hardware) && rental.ReturnDate == null);
+        var userRental = _activeRentals.FirstOrDefault(
+            rental => rental.Hardware.Equals(hardware)
+                      && rental.ReturnDate == null);
 
         if (userRental is null)
         {
@@ -52,7 +58,7 @@ public class RentalService : IRentalService
         hardware.IsAvailable = true;
     }
 
-    private decimal CalculatePenalty(int daysLate)
+    private static decimal CalculatePenalty(int daysLate)
     {
         return daysLate == 0 ? 0 : daysLate * 10m;
     }
