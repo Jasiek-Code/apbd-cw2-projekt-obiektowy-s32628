@@ -9,7 +9,7 @@ public interface IRentalService
     IReadOnlyList<Rental> Rentals { get; }
     
     void Rent(User user, Hardware hardware, int daysToRent);
-    void Return(Hardware hardware, DateTime? returnDate = null);
+    void Return(Guid hardwareId, DateTime? returnDate = null);
     
     void SaveData(string filePath = "Data/rentals.json");
     void LoadData(string filePath = "Data/rentals.json");
