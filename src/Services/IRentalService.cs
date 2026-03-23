@@ -6,6 +6,11 @@ namespace projekt_obiektowy.Services;
 
 public interface IRentalService
 {
+    IReadOnlyList<Rental> Rentals { get; }
+    
     void Rent(User user, Hardware hardware, int daysToRent);
-    void Return(Hardware hardware, DateTime? returnDate);
+    void Return(Hardware hardware, DateTime? returnDate = null);
+    
+    void SaveData(string filePath = "Data/rentals.json");
+    void LoadData(string filePath = "Data/rentals.json");
 }

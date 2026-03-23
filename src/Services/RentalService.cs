@@ -31,7 +31,7 @@ public class RentalService : IRentalService
         _activeRentals.Add(new Rental(user, hardware, daysToRent));
     }
 
-    public void Return(Hardware hardware, DateTime? returnDate)
+    public void Return(Hardware hardware, DateTime? returnDate = null)
     {
         var userRental = _activeRentals.FirstOrDefault(
             rental => rental.Hardware.Equals(hardware)
@@ -65,7 +65,7 @@ public class RentalService : IRentalService
         return daysLate == 0 ? 0 : daysLate * 10m;
     }
     
-    public void SaveData(string filePath = "./Data/rentals.json")
+    public void SaveData(string filePath = "/Data/rentals.json")
     {
         Directory.CreateDirectory("Data"); 
         
@@ -74,11 +74,14 @@ public class RentalService : IRentalService
         File.WriteAllText(filePath, jsonString);
     }
 
-    public void LoadData(string filePath = "./Data/rentals.json")
+    public void LoadData(string filePath = "/Data/rentals.json")
     {
         if (!File.Exists(filePath)) return;
         
         var jsonString = File.ReadAllText(filePath);
+        
+        if (string.IsNullOrWhiteSpace(jsonString)) return;
+
         var loadedRentals = JsonSerializer.Deserialize<List<Rental>>(jsonString);
 
         if (loadedRentals == null) return;
