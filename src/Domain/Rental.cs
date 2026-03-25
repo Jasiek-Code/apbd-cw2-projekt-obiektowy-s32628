@@ -1,4 +1,5 @@
-﻿using projekt_obiektowy.Domain.Equipment;
+﻿using System.Text.Json.Serialization;
+using projekt_obiektowy.Domain.Equipment;
 using projekt_obiektowy.Domain.Users;
 
 namespace projekt_obiektowy.Domain;
@@ -9,6 +10,8 @@ public class Rental(User user, Hardware hardware, int rentedForDays)
     public User User { get; } = user;
     public Hardware Hardware { get; } = hardware;
     public int RentedForDays { get; } = rentedForDays;
+    
+    [JsonInclude]
     public decimal Penalty { get; private set; }
     
     public DateTime RentDate { get; init; } = DateTime.Now;
